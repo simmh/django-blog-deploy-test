@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}My amazing blog{% endblock %}</title>
+    <!-- Include external CSS. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css" />
+    <style>
+      html {
+        position: relative;
+        min-height: 100%;
+      }
+    
+      body {        
+        margin-bottom: 80px;
+      }
+    
+      #header {
+        padding: 1em 0;
+        /* line-height: 2.5em; */
+        /* height: 50px; */
+        /* margin-bottom: 50px; */
+        
+      }
+
+      header a {
+        margin: 1em;
+      }
+      nav {        
+        width: 200px;
+        /* background: #faffbf; */
+        background: white;
+        
+      }     
+
+
+      nav>ul{
+        border-right: 1px solid gray;
+      }
+
+      footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;        
+        line-height: 60px;
+        background-color: white;
+        text-align: center;
+        font-size: .8em;
+        color: gray;
+        
+      }
+    
+      /* div, header, nav, main, article {
+        outline: mediumpurple 1px solid;
+      } */
+    </style>
+    {% block style %} {% endblock %}
+</head>
+<body>
+  <div id="wrap">
+
+    <!-- start header -->
+    <!-- uk-navbar start -->
+    <header id="header" class="uk-navbar-container uk-margin" style="margin-bottom: 20px; z-index: 980;" uk-sticky="show-on-up: true; animation: uk-animation-slide-top;" uk-navbar>
+      <div class="uk-navbar-left">        
+         {% if request.user.is_authenticated %}
+        <a href="{% url 'post_create' %}" class="uk-button uk-button-default" uk-toggle>ADD
+          <span class="uk-margin-small-right" uk-icon="icon: plus-circle"></span>
+        </a>
+         {% endif %}
+      </div>
+      <div class="uk-navbar-center">
+        <a class="logo uk-navbar-item uk-logo" href="/">BLOG</a>
+      </div>
+      <div class="uk-navbar-right">
+        <!-- <a href="#offcanvas-slide" class="uk-button uk-button-default uk-hidden@s" uk-toggle>Open</a> -->
+        <a href="#offcanvas-slide" class="uk-button uk-button-default uk-hidden@s" uk-toggle>Item <span class="uk-margin-small-right" uk-icon="icon: table"></span></a>
+      </div>
+    </header>
+    <!-- uk-navbar end -->
+    <!-- end header -->
+
+
+
+    <!-- container start -->
+    <div class = "container" uk-grid>
+      {% block main %}
+      <!-- nav start -->
+      <nav class="uk-visible@s">
+        <ul uk-sticky="offset:100;">
+          <li>
+            by simmh
+          </li>
+          <li class='category'>
+            CATEGORY
+            <div class="ajax_category"></div>
+          </li>
+          <li>
+            TAGS
+          </li>
+        </ul>
+      </nav>        
+      <!-- nav end -->
+      
+      
+      <!-- main start -->
+      <main class="uk-width-expand">
+        {% block content %}
+        <article>
+      
+        </article>
+        {% endblock %}
+      
+      </main>
+      <!-- main end -->
+      {% endblock %}
+    </div>
+    <!-- container end -->
+    
+
+    <!-- footer start -->
+    <footer class="footer" uk-sticky="bottom: true">
+      <div class="uk-text-center">
+        <span class="text-muted">Copyright©2018 by simmh</span>       
+      </div>
+    </footer>
+    <!-- end footer -->
+  </div>
+
+  <!-- off-menu start -->
+  <!-- <div id="off-menu" uk-offcanvas>
+    <div class="uk-offcanvas-bar">
+      <button class="uk-offcanvas-close" type="button" uk-close></button>
+        <ul>
+          <li>menu 1</li>
+          <li>menu 2</li>
+          <li>menu 3</li>
+        </ul>
+    </div>
+  </div> -->
+
+  <div id="offcanvas-slide" uk-offcanvas>
+    <div class="uk-offcanvas-bar">  
+      <div class="ajax_category"></div>
+    </div>
+  </div>
+  <!-- off-menu end -->
+
+
+  <!-- Include external JS libs. -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+   
+
+    <script src="{% static '/js/main.js' %}"></script>
+    {% block script %} {% endblock%}
+</body>
+</html>

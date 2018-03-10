@@ -1,0 +1,55 @@
+{% extends "layout/base.html" %} 
+
+{% block title %}
+POST CREATE
+{% endblock %}
+{% block style %}
+<!-- Include Editor style. -->
+<link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.5/css/froala_editor.min.css' rel='stylesheet' type='text/css'
+/>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.5/css/froala_style.min.css' rel='stylesheet' type='text/css'
+/>
+<style>
+  #id_body {
+    min-height: 500px ;
+  }
+</style>
+{% endblock%}
+{% block main %}
+
+  <h3 class="uk-card-title">POST CREATE</h3>
+  <form action="{% url 'post_create'%}" method="POST" uk-grid>
+    {% csrf_token %} 
+        <div class="uk-width-1-4">
+           {{form.category}}
+        </div>
+        <div class="uk-width-3-4">
+           {{form.title}}
+        </div>
+        <div class="uk-width-1-1">
+           {{form.body}}
+        </div>
+        <div class="uk-width-1-1">
+          <button class="uk-button uk-button-default uk-button-large">Cancel</button>
+          <button type="submit" value="Submit" class="uk-button uk-button-primary uk-button-large">Submit</button>
+        </div>
+      </form>
+
+
+
+
+
+{% endblock%}
+
+{% block script %}
+    <!-- Include Editor JS files. -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.5/js/froala_editor.pkgd.min.js"></script>
+    
+    <!-- Initialize the editor. -->
+    <script> 
+      $(function () { $('#id_body').froalaEditor({
+      }) });
+    </script>
+
+
+{% endblock %}

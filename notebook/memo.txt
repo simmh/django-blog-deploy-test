@@ -1,0 +1,30 @@
+## pip
+pip list --format=columns
+
+## jupyter notebook
+pip3 install "ipython[notebook]"
+
+## virtualenvwrapper
+pip install virtualenvwrapper-win
+mkvirtualenv {{env}}
+lsvirtualenv
+rmvirtualenv {{env}}
+
+
+## Create Project & App
+$ python django-admin startproject {{project name}}
+$ python manage.py startapp { app name}}
+
+
+# migration
+python manage.py makemigrations  --settings=config.settings.local
+python manage.py migrate  --settings=config.settings.local
+
+## Run server 
+$ python manage.py runserver  --settings=config.settings.local
+
+## shell with jupyter notebook
+$ python manage.py shell_plus --notebook --settings=config.settings.local
+
+
+python F:\WORK\envs\blog\Scripts\django-admin.py

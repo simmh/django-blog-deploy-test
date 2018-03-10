@@ -1,0 +1,30 @@
+{% extends "layout/base.html" %} 
+{% block style %}
+<style>
+.post-list {
+
+}
+
+.post-list span.title {
+  color: #181818;
+}
+
+.post-list span.date {
+  color: lightslategrey;
+  font-size: .8em;
+}
+</style>
+{% endblock %}
+{% block content %}
+
+<ul class="post-list">
+{% for p in posts %}
+  <li>
+    <a href="{% url 'post_detail' p.id %}">
+    <span class="title">{{p.title}}</span> 
+    <span class="date">{{p.updated|date:'Y.m.d H:i'}}</span>
+  </a>
+</li>
+{% endfor %}
+</ul>
+{% endblock%}
